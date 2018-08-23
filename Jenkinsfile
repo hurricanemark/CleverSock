@@ -1,5 +1,5 @@
 node {
-   agent {label 'AzureSLES-13.91.130.158', 'IBM-LINUXONE-RHEL_kito'} 
+   agent {label 'AzureSLES-13.91.130.158 && IBM-LINUXONE-RHEL_kito'} 
    stage('Download Source Code') { // for display purposes
       // Get some code from a GitHub repository
       sh "curl -u markn:markn123 -O ftp://96.72.171.35/devrepo/CV4LINUX3_0/BUILDSRC-CV4LINUX3_0-SLES-x86_64.tar.gz;      tar -xvf BUILDSRC-CV4LINUX3_0-SLES-x86_64.tar.gz"
