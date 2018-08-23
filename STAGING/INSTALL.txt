@@ -1,0 +1,60 @@
+Copyright (c) 2017 Applied Expert Systems, Inc.
+All Rights Reserved.
+-----------------------------------------------
+
+Pre-requisites:
+==============
+
+1.  Install MySQL server:
+shell# yum install -y mysql mysql-server
+shell# service mysqld start
+
+-- set database root password:
+shell# mysql_secure_installation
+
+2.  Install apache-tomcat:
+shell# yum install tomcat
+shell# service tomcat start
+
+3.  Install net-snmp:
+shell# yum install net-snmp
+shell# service snmpd start
+
+4. Install/update neccessary system utils:
+shell# yum install bind-utils
+shell# yum install net-tools
+
+
+Install and Configure CleverView(R) for TCP/IP on Linux:
+========================================================
+Package: cv4tcpipl-3.0-1.0.x86_64.SLES.rpm
+Version: 3.0
+System: SLES
+Platform: x86_64
+
+
+There are two methods (A or B)
+
+A.  Install from the web:
+-------------------------
+The install script is designed to automatically download the appropriate package, 
+and lauches configuration after setup. 
+
+A1.  Download install script from root console
+shell> wget http://www.aesclever.com/aftp/.linux3.0/RPM/SLE/x86_64/installcv4.sh
+
+A2.  Launch install script
+shell> bash installcv4.sh
+
+
+B.  Install from copy:
+----------------------
+The installcv4local.sh script is designed to launch local file cv4tcpipl-3.0-1.0.x86_64.SLES.rpm
+then launches configuration after setup.
+B1.  Download both files:
+shell> wget http://www.aesclever.com/aftp/.linux3.0/RPM/SLE/x86_64/installcv4local.sh
+shell> wget http://www.aesclever.com/aftp/.linux3.0/RPM/SLE/x86_64/cv4tcpipl-3.0-1.0.x86_64.SLES.rpm
+
+B2.  Launch the install script
+shell> bash installcv4local.rpm
+

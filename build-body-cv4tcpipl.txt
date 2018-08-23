@@ -1,0 +1,56 @@
+
+
+
+tar -xvf cv4tcpipl-deploy.tar.gz
+mv cv4tcpipl-deploy  cv4tcpipl-${version}-${release}.${target}
+tar -cvf cv4tcpipl-${version}-${release}.${target}.tar cv4tcpipl-${version}-${release}.${target}
+rm -f cv4tcpipl-${version}-${release}.${target}.tar.gz
+gzip cv4tcpipl-${version}-${release}.${target}.tar
+rm -rf cv4tcpipl-${version}-${release}.${target}
+
+rm -rf ${_topdir}
+mkdir -p $_topdir/{RPMS,SRPMS,BUILD,BUILDROOT,SOURCES,SPECS,tmp}
+STARTDIR=`pwd`
+rm -f $_topdir/SOURCES/cv4tcpipl-${version}-${release}.${target}.tar.gz
+rm -f $_topdir/BUILDROOT/cv4tcpipl-${version}-${release}.${target}.tar.gz
+rm -rf $_topdir/BUILDROOT/cv4tcpipl-${version}-${release}.${target}
+cp cv4tcpipl-${version}-${release}.${target}.tar.gz  ~/rpmbuild/SOURCES/.
+cp cv4tcpipl.spec ~/rpmbuild/SPECS/cv4tcpipl${version}.${release}-${target}.spec 
+rm -f cv4tcpipl-${version}-${release}.${target}.tar.gz
+cd ~/rpmbuild/SPECS
+
+#build x86_64
+rpmbuild -ba --target=x86_64 cv4tcpipl${version}.${release}-${target}.spec
+sleep 1 
+mkdir -p $STARTDIR/OUTPUT/${target}
+cd $STARTDIR/OUTPUT/${target}
+mv $_topdir/RPMS/${target}/cv4tcpipl-${version}-${release}.${target}.rpm cv4tcpipl-${version}-${release}.${target}.${platform}.rpm
+rpm -qip cv4tcpipl-${version}-${release}.${target}.${platform}.rpm > INFO.txt
+cp $STARTDIR/STAGING/* .
+echo "Build cv4tcpipl-${version}-${release}.${target} ${platform} completed."
+
+echo
+echo
+echo "Archieving..."
+cd $STARTDIR
+rm -rf cv4tcpipl-$VERSION.$PLATFORM
+cd ..
+rm -f BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar.gz
+tar -cvf BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar CV4LINUX$ARCHVER; gzip BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar
+echo
+echo "Uploading..."
+echo "
+lcd $STARTDIR/OUTPUT/$PLATFORM
+cd /home/markn/devrepo/CV4LINUX$ARCHVER/IMAGES/$OS/$PLATFORM
+put INFO.txt
+put cv4tcpipl-$VERSION.$PLATFORM.$OS.rpm
+lcd ../../..
+cd /home/markn/devrepo/CV4LINUX$ARCHVER
+put BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar.gz
+bye" | sftp -o Port=$SFTPPORT $USERNAME@$SFTPHOST
+echo
+echo "Done!"
+
+
+exit 0
+
