@@ -31,23 +31,23 @@ echo "Build cv4tcpipl-${version}-${release}.${target} ${platform} completed."
 
 echo
 echo
-echo "Archieving..."
+echo "Archiving..."
 cd $STARTDIR
 rm -rf cv4tcpipl-$VERSION.$PLATFORM
 cd ..
 rm -f BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar.gz
 tar -cvf BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar CV4LINUX$ARCHVER; gzip BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar
 echo
-echo "Uploading..."
-echo "
-lcd $STARTDIR/OUTPUT/$PLATFORM
-cd /home/markn/devrepo/CV4LINUX$ARCHVER/IMAGES/$OS/$PLATFORM
-put INFO.txt
-put cv4tcpipl-$VERSION.$PLATFORM.$OS.rpm
-lcd ../../..
-cd /home/markn/devrepo/CV4LINUX$ARCHVER
-put BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar.gz
-bye" | sftp -o Port=$SFTPPORT $USERNAME@$SFTPHOST
+#echo "Uploading..."
+#echo "
+#lcd $STARTDIR/OUTPUT/$PLATFORM
+#cd /home/markn/devrepo/CV4LINUX$ARCHVER/IMAGES/$OS/$PLATFORM
+#put INFO.txt
+#put cv4tcpipl-$VERSION.$PLATFORM.$OS.rpm
+#lcd ../../..
+#cd /home/markn/devrepo/CV4LINUX$ARCHVER
+#put BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar.gz
+#bye" | sftp -o Port=$SFTPPORT $USERNAME@$SFTPHOST
 echo
 echo "Done!"
 
