@@ -1,9 +1,9 @@
 
 
 
-tar -xvf cv4tcpipl-deploy.tar.gz
+tar -xf cv4tcpipl-deploy.tar.gz
 mv cv4tcpipl-deploy  cv4tcpipl-${version}-${release}.${target}
-tar -cvf cv4tcpipl-${version}-${release}.${target}.tar cv4tcpipl-${version}-${release}.${target}
+tar -cf cv4tcpipl-${version}-${release}.${target}.tar cv4tcpipl-${version}-${release}.${target}
 rm -f cv4tcpipl-${version}-${release}.${target}.tar.gz
 gzip cv4tcpipl-${version}-${release}.${target}.tar
 rm -rf cv4tcpipl-${version}-${release}.${target}
@@ -36,7 +36,7 @@ cd $STARTDIR
 rm -rf cv4tcpipl-$VERSION.$PLATFORM
 cd ..
 rm -f BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar.gz
-tar -cvf BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar CV4LINUX$ARCHVER; gzip BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar
+tar -cf BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar CV4LINUX$ARCHVER; gzip BUILDSRC-CV4LINUX$ARCHVER-$OS-$PLATFORM.tar
 echo
 #echo "Uploading..."
 #echo "
