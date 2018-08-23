@@ -17,6 +17,6 @@ node {
       }
    }
    stage('Clean up') {
-      sh "mv OUTPUT ../.; cd ..; rm -f BUILDSRC-CV4LINUX3_0-SLES-x86_64.tar.gz" 
+      sh "mv CV4LINUX3_0/OUTPUT OUTPUT; cd ..; rm -f BUILDSRC-CV4LINUX3_0-SLES-x86_64.tar.gz" 
    }
 }
